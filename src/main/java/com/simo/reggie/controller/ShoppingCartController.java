@@ -142,13 +142,10 @@ public class ShoppingCartController {
      */
     @DeleteMapping("/clean")
     public R<String> clean(){
-        //SQL:delete from shopping_cart where user_id = ?
 
         LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(ShoppingCart::getUserId,threadLocal.get());
-
         iShoppingCartService.remove(queryWrapper);
-
         return R.success("清空购物车成功");
     }
 }
